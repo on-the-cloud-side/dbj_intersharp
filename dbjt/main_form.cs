@@ -101,11 +101,11 @@ namespace dbjept
 		private void on_loaded(object sender, System.EventArgs e)
 		{
 			/**/
-			Rectangle sr	= Screen.GetWorkingArea(this) ;
+			var /*Rectangle*/ sr	= Screen.GetWorkingArea(this) ;
 			this.Width		= Convert.ToInt32( sr.Width * 0.8 ) ;
 			this.Height		= Convert.ToInt32( sr.Height * 0.8 ) ;
-			int left		= (sr.Width/2) - (this.Width/2);
-			int top		= (sr.Height/2) - (this.Height/2);
+            int left = 1; // (sr.Width/2) - (this.Width/2);
+            int top = 1; // (sr.Height/2) - (this.Height/2);
 			// Center the Form on the user's screen
 			this.SetBounds(
 				left ,top, this.Width, this.Height, BoundsSpecified.All 
@@ -153,9 +153,10 @@ namespace dbjept
 			Util.tooltip_to_control( this.output , "Double-click to erase this text") ;
 			Util.tooltip_to_control( this.treeView1 , "Test configuration") ;
 			Util.tooltip_to_control( this.toolBar , "(c) 2003-2006 by DBJSOLUTIONS.COM\n\rAll rights reserved" ) ;
+            Util.tooltip_to_control(this.toolBar, "(c) 2018 by DBJ.Systems \n\rAll rights reserved");
 
-			// initial info for the output
-			this.writeln( 
+            // initial info for the output
+            this.writeln( 
 				Environment.NewLine  + 
 				System.Reflection.Assembly.GetExecutingAssembly().FullName  +
 				Environment.NewLine  + 
@@ -176,8 +177,8 @@ namespace dbjept
 				AppDomain.CurrentDomain.BaseDirectory,
 				AppDomain.CurrentDomain.DynamicDirectory ,
 				( AppDomain.CurrentDomain.ShadowCopyFiles ? "YES" : "NO" ) ) ;
-			System.Diagnostics.Debug.WriteLine("") ;
-			System.Diagnostics.Debug.WriteLine( debug_info ) ;
+			// System.Diagnostics.Debug.WriteLine("") ;
+			// System.Diagnostics.Debug.WriteLine( debug_info ) ;
 				Behind.trace.info( "Loaded and initialized the main form" ) ;
 				this.writeln( debug_info ) ;
 #endif

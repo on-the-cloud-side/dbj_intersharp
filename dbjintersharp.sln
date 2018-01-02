@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbjfm", "dbjfm\dbjfm.csproj", "{8258D1F6-05DC-4F2B-9B99-101578371456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbj_eptest", "dbjt\dbj_eptest.csproj", "{7FF80159-ACA0-4342-9249-492082B244F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbjintertest", "dbjt\dbjintertest.csproj", "{7FF80159-ACA0-4342-9249-492082B244F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbjipoint", "ipoint\dbjipoint.csproj", "{EB3D19C7-799F-40B1-A16A-1814B15491E4}"
 EndProject
