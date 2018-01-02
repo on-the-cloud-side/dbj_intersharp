@@ -1,0 +1,2818 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dbjfm</name>
+    </assembly>
+    <members>
+        <member name="T:dbj.fm.config.AssemblySettings">
+            <summary>
+            Defines methods and properties for accessing the configuration file of caller		
+            </summary>
+        </member>
+        <member name="P:dbj.fm.config.AssemblySettings.nodeName">
+            <summary>
+            returns nodename as tranzax_settings
+            </summary>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Constructor of AssemblySettings class 
+            Makes a call to GetConfig(assembly) method and initializes settings (IDictionary)
+            </summary>
+            <param name="asm"></param>
+        </member>
+        <member name="P:dbj.fm.config.AssemblySettings.Item(System.String)">
+            <summary>
+            indexer returning instance of an implicitor made by value found
+            </summary>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.GetConfig">
+            <summary>
+            Retursn IDictionary containing the values of calling assembly config file.
+            </summary>
+            <returns>IDictionary</returns>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.GetConfig(System.Reflection.Assembly)">
+            <summary>
+            Open and parse configuration file for specified
+            assembly, returning dictionary collection to caller for future
+            use outside of this class.
+            </summary>
+            <param name="asm">the assembly</param>
+            <returns>IDictinary representing a section found by nodeName as defined in here</returns>
+            <exception cref="T:System.Exception">On error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.config_asxml">
+            <summary>
+            Makes call to AssemblySettings.GetXMLConfig(assembly reference) by passing
+             reference of calling assembly 
+            </summary>
+            <returns>
+            System.Xml.XmlNodeList representing a section found by a nodename 
+            defined in this class
+            </returns>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.config_asxml(System.String)">
+            <summary>
+            Makes call to AssemblySettings.GetXMLConfig(assembly,sectionname) passing
+            reference of calling assembly and section name 
+            </summary>
+            <param name="name">section name in the config file</param>
+            <returns>System.Xml.XmlNodeList</returns>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.GetXMLConfig(System.Reflection.Assembly,System.String[])">
+            <summary>
+            Open configuration file for specified assembly, returning collection of xml nodes to caller for future use outside of this class.
+            This allows users to have sections which are pure xml
+            <code>
+            <assemblySeetings>
+            <root>
+            <data>
+            <f1>F1</f1>
+            <f2>F2</f2>
+            </data>
+            </root>
+            </assemblySeetings>
+            </code>
+            </summary>
+            <param name="asm">the assembly for which toread the settings</param>
+            <param name="names">optional arg ifwe are looking for the settings node by exact value of hte attribute 'name'</param>
+            <returns>XmlNodeList representing all sections found by nodeName as defined in here</returns>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.cfg_file">
+            <summary>
+            the name of the assembly configuration file
+            </summary>		
+            <returns>file name</returns>
+        </member>
+        <member name="M:dbj.fm.config.AssemblySettings.assembly_cfg_file(System.Reflection.Assembly)">
+            <summary>
+            the name of the assembly configuration file
+            </summary>
+            <param name="asm">the assembly</param>
+            <returns>file name</returns>
+        </member>
+        <member name="T:dbj.fm.config.configurator">
+            <summary>
+            Summary description for configurator. 
+            Implements Iconfiguration interface which contains methods for 
+            accessing the callers configuration file
+            </summary>
+        </member>
+        <member name="M:dbj.fm.config.configurator.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Constructor of configurator class. Makes as instace of 
+            fm.config.AssemblySettings class.
+            </summary>
+            <param name="asm">assembly reference of the caller</param>
+        </member>
+        <member name="P:dbj.fm.config.configurator.file_name">
+            <summary>
+            returns name of calling assembly configuration file.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.config.configurator.config_node_name">
+            <summary>
+            the name of the config node which is going to be processed by this service.
+            Other nodes are ignored.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.config.configurator.get_value(System.String)">
+            <summary>
+            Retrieves value for the specified key from the caller configuration file
+            </summary>
+            <param name="key">name of key present in configuration file of the caller</param>
+            <returns>fm.Implicitor</returns>
+        </member>
+        <member name="M:dbj.fm.config.configurator.get_asxml">
+            <summary>
+            Returns an xmlNodeList containing config nodes of nodename defined in 
+            Assemblysettings class from the caller configuration file
+            </summary>
+            <returns>System.Xml.XmlNodeList</returns>
+        </member>
+        <member name="M:dbj.fm.config.configurator.get_asxml(System.String)">
+            <summary>
+            get every config node where attrib name eq givne name as xmlnode regardles of its kind
+            </summary>		
+            <param name="name">attribute value in tranzax_settings node for which 
+            xmlnodelist has to be retrived</param> 
+            <returns>list of XML nodes</returns>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet">
+            <summary>
+            Summary of AdoNet class. Defines method and properties which helps in making various
+            calls like select, insert, update etc to the database using OleDbConnection.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.#ctor(System.String)">
+            <summary>
+            Constructor of AdoNet class.
+            </summary>
+            <param name="conn_string">connection string</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.exception_report(System.Data.OleDb.OleDbException)">
+            <summary>
+            makes the string containing the full exception report from the given OleDbException.
+            </summary>
+            <param name="e">OleDbException</param>
+            <returns>string representing exception report</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.get_table_names(dbj.fm.Idata.TableType)">
+            <summary>
+            Returns names of tables or views.
+            </summary>		
+            <param name="ttype">must be 'BASE TABLE' or 'VIEW'</param> 
+            <returns>array of names</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes a SQL statement against the Connection and returns the number of rows affected.
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns>Number of rows affected</returns>
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.TRANSACTION_STATE">
+            <summary>
+            this is used for signaling what is the last transaction outcome
+            </summary>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.OPERATION_KIND">
+            <summary>
+            signal what kind of operation will be performed on the data
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.open_connection(System.Boolean,dbj.fm.data.AdoNet.OPERATION_KIND)">
+            <summary>
+            open the connection taking care of the transactional mode
+            it transaction is required
+            </summary>
+            <param name="WITH_TRANSACTION">true if transaction is required</param>
+            <param name="op_kind">kind of operation</param> 
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.close_connection(dbj.fm.data.AdoNet.TRANSACTION_STATE)">
+            <summary>
+            close the current connection, taking care of the possible transaction
+            and its outcome
+            </summary>
+            <param name="TxSTATE">commit or rollback, enum value</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.make_conn_str(System.String,System.String,System.String,System.String)">
+            <summary>
+            Makes connection string
+            </summary>
+            <param name="data_source_">Source of data</param>
+            <param name="user_id_">User Id</param>
+            <param name="user_password_">User Password</param>
+            <param name="initial_catalog_">database name</param>
+            <returns>string representing connection string</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor of AdoNet Class
+            </summary>
+            <param name="data_source_">Source of data</param>
+            <param name="user_id_">User Id</param>
+            <param name="user_password">User Password</param>
+            <param name="initial_catalog_">database name</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.init(System.String)">
+            <summary>
+            init function for COM clients
+            </summary>
+            <param name="new_cs">connection string</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.construct">
+            <summary>
+            private called from constructors
+            </summary>
+            <exception cref="T:System.Data.OleDb.OleDbException">While making connection to the database if oledb 
+            error occurs then OleDbException is thrown</exception>
+            <exception cref="T:System.Exception">If other than OleDb error occurs Exception is thrown</exception>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.select(System.String)">
+            <summary>
+            execute the SQL SELECT statement and return the data set.
+            Fills the resulting data set and creates a DataTable named "Table".
+            </summary>
+            <param name="statement">Sql statement</param>
+            <returns>Dataset containing the result of sql statement</returns>
+            <exception cref="T:System.Exception">On error system.Exception is thrown</exception>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.insert(System.String)">
+            <summary>
+            execute the SQL INSERT statement
+            </summary>
+            <param name="statement">Sql Statement</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.update(System.String)">
+            <summary>
+            execute the SQL UPDATE statement
+            </summary>
+            <param name="statement">Sql Statement</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.erase(System.String)">
+            <summary>
+            execute the SQL DELETE statement
+            </summary>
+            <param name="statement">sql statement</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.exec(System.String)">
+            <summary>
+            execute the SQL EXEC statement
+            </summary>
+            <param name="statement">sql statement </param>
+            <returns>number of row affetected</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.scalar(System.String)">
+            <summary>
+            Executes the query, and returns the first column of the first row 
+            in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="scalar_query">scalar query</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.select_command(System.String)">
+            <summary>
+            Make OleDbCommand to be assigned to OleDbDataAdapter.SelectCommand
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns>OleDbCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.insert_command(System.String)">
+            <summary>
+            Make OleDbCommand to be assigned to OleDbDataAdapter.InsertCommand
+            </summary>
+            <param name="statement">Sql statement</param>
+            <returns>OleDbCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.update_command(System.String)">
+            <summary>
+            Make OleDbCommand to be assigned to OleDbDataAdapter.UpdateCommand
+            </summary>
+            <param name="statement">Sql Statement</param>
+            <returns>OleDbCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.delete_command(System.String)">
+            <summary>
+            Make OleDbCommand to be assigned to OleDbDataAdapter.DeleteCommand
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns>OleDbCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.for_each_row(dbj.fm.data.visitor,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theVisitor">fm.data.visitor delegate</param>
+            <param name="select_statement">sql statement</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.getReaderFor(System.String)">
+            <summary>
+            returns DataReader
+            </summary>
+            <param name="statement" >sql statement</param>
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.add_parameter(System.String,System.Data.OleDb.OleDbType,System.Data.ParameterDirection,System.Object,System.Int32)">
+            <summary>
+            returns Parameter object 
+            </summary>
+            <param name="param_direction" >value indicating whether the parameter is input-only, output-only, bidirectional, 
+            or a stored procedure return value parameter.</param>
+            <param name="param_name" >name of the parameter</param>
+            <param name="param_size" >the maximum size, in bytes, of the data within the column</param>
+            <param name="param_type" >the DbType of the parameter.</param>
+            <param name="param_value" >value of the parameter</param>
+            <exception cref="T:System.Exception">on error exception is thrown</exception>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.add_param_VARCHAR(System.String,System.Object,System.Int32,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of varchar type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >value indicating whether the parameter is input-only, output-only, bidirectional, 
+            or a stored procedure return value parameter.</param>
+            <param name="param_size" >the maximum size, in bytes, of the data within the column</param>
+            <param name="param_value" >value of the parameter</param>		
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.add_param_INT(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of integer type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >Parameter Direction</param>
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.add_param_DATETIME(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of datetime type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param> 
+            <param name="param_dir" >Parameter Direction</param>
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.add_param_FLOAT(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of float type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >Parameter Direction</param>
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.add_param_BOOL(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of bool type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >Parameter Direction</param>
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.delete_parameters">
+            <summary>
+            deletes Parameters collection from command object
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.exec_sp_for_single_retval(System.String)">
+            <summary>
+            Executes command object and returns single int value from stored procedure
+            example : 
+            exec_sp_for_single_retval('sp_x')
+            </summary>
+            <param name="sp_name">the name of stored procedure</param>
+            <returns>
+            return singleint value, obtained through first parameter of the stored procedure
+            </returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.exec_sp_command(System.Data.OleDb.OleDbCommand)">
+            <summary>
+            execute SP and its parameters stored in a command
+            </summary>
+            <param name="command_" >OleDbCommand to be used</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.fill_dataset(System.Data.DataSet,System.Data.OleDb.OleDbDataAdapter,System.String,System.String)">
+            <summary>
+            fill_dataset
+            </summary>
+            <param name="ds">dataset</param>
+            <param name="ad">OleDbAdapter</param>
+            <param name="statement">sql statement</param>
+            <param name="tbl_name">table name</param>
+            <exception cref="T:System.Exception">On error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.check_statement(System.String)">
+            <summary>
+            trims sql statement
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.new_sp_call(System.String,dbj.fm.data.AdoNet.PARAM[])">
+            <summary>
+            Makes SPimplementation with the list of parameters supplied
+            </summary>
+            <param name="sp_name">name of the sp</param>
+            <param name="list">optional list of parameters</param>
+            <returns>SP</returns>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM">
+            <summary>Abstraction of one parameter for the stored procedure.</summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.direction_">
+            <summary>
+            ParameterDirection
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.type_">
+            <summary>
+            OleDbType
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.name_">
+            <summary>
+            name of the parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.value_">
+            <summary>
+            value of the parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.size_">
+            <summary>
+            size of the parameter
+            </summary>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM.DIRECTION">
+            <summary>
+            Parameter direction enumerator
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.DIRECTION.IN">
+            <summary>
+            In parameter 
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.DIRECTION.OUT">
+            <summary>
+            Out parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.DIRECTION.INOUT">
+            <summary>
+            Inout parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.AdoNet.PARAM.DIRECTION.RETVAL">
+            <summary>
+            Value Return parameter
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM.the_direction(dbj.fm.data.AdoNet.PARAM.DIRECTION)">
+            <summary>
+            Returns appropriate parameter dir based on the given direction
+            </summary>
+            <param name="dir">direction of parameter any of the value in 
+            Direction Enumeration defined in this class</param>
+            <returns>ParameterDirection</returns>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM.#ctor(System.Data.ParameterDirection,System.Data.OleDb.OleDbType,System.String,System.Object,System.Int32)">
+            <summary>
+            Constructor of PARAM class
+            </summary>
+            <param name="dir">direction of paramater</param>
+            <param name="typ">OleDbType</param>
+            <param name="name">name of the paramter</param>
+            <param name="val">value of the parameter</param>
+            <param name="siz">size of parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM.to_command(System.Data.OleDb.OleDbCommand@)">
+            <summary>
+            make Parameter and add it to the command object given
+            </summary>
+            <param name="command_" >OleDbCommand</param>
+            <exception cref="T:System.Exception">On error throws an exception</exception>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM_BOOL">
+            <summary>
+            Makes a parameter of BOOL Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM_BOOL.#ctor(dbj.fm.data.AdoNet.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_BOOL class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM_FLOAT">
+            <summary>
+            Makes a parameter of FLOAT Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM_FLOAT.#ctor(dbj.fm.data.AdoNet.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_FLOAT class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM_DATETIME">
+            <summary>
+            Makes a parameter of DATETIME Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM_DATETIME.#ctor(dbj.fm.data.AdoNet.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_DATETIME class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM_INT">
+            <summary>
+            Makes a parameter of INT Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM_INT.#ctor(dbj.fm.data.AdoNet.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_INT class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.PARAM_VARCHAR">
+            <summary>
+            Makes a parameter of VARCHAR Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.PARAM_VARCHAR.#ctor(dbj.fm.data.AdoNet.PARAM.DIRECTION,System.String,System.Object,System.Int32)">
+            <summary>
+            constructor of PARAM_VARCHAR class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+            <param name="siz" >size of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.SP">
+            <summary>
+            Encapsulates an parameterized call to the stored procedure
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.SP.add_p(dbj.fm.data.AdoNet.PARAM)">
+            <summary>
+            add the parameter for SP call
+            </summary>
+            <param name="the_parameter">instance of the PARAM</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.SP.exec_for_retval">
+            <summary>execute the stored proc. and return the single return value.
+            NOTE: does not return 'rows affected'</summary>
+            <returns>return value obtained through Param[0].Value</returns>
+        </member>
+        <member name="P:dbj.fm.data.AdoNet.SP.Item(System.String)">
+            <summary>
+            get or set the value of the named SP property
+            </summary>			
+        </member>
+        <member name="T:dbj.fm.data.AdoNet.SPimplementation">
+            <summary>
+            SP implementation
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.SPimplementation.#ctor(dbj.fm.data.AdoNet,System.String)">
+            <summary>
+            Constructor of SPimplementation class
+            </summary>
+            <param name="host">instance of AdoNet Class</param>
+            <param name="name">name of the sp</param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.SPimplementation.add_p(dbj.fm.data.AdoNet.PARAM)">
+            <summary>
+            adds the parameter to the command object
+            </summary>
+            <param name="the_parameter"></param>
+        </member>
+        <member name="M:dbj.fm.data.AdoNet.SPimplementation.exec_for_retval">
+            <summary>
+            Executes the sp
+            </summary>
+            <returns>the number of rows affected</returns>
+        </member>
+        <member name="P:dbj.fm.data.AdoNet.SPimplementation.Item(System.String)">
+            <summary>
+            Indexer for this class helps in setting and retriving parameter values for the command
+            </summary>
+        </member>
+        <member name="T:dbj.fm.data.visitor">
+            <summary>
+             This kind of delegate is required to use for_each_row() methods. 
+            </summary>
+        </member>
+        <member name="T:dbj.fm.data.dbjsql">
+            <summary>
+            The common base class for all implementations of data providers
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.dbjsql.#ctor">
+            <summary>
+            This contructor is visible only to inheritors.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.dbjsql.#ctor(System.String)">
+            <summary>
+            Constructor of dbjsql
+            </summary>
+            <param name="connection_string">connection string</param>
+        </member>
+        <member name="M:dbj.fm.data.dbjsql.check">
+            <summary>
+            checks if connection string is null
+            </summary>
+        </member>
+        <member name="P:dbj.fm.data.dbjsql.connection_string">
+            <summary>
+            gets or sets connection string
+            </summary>	
+        </member>
+        <member name="T:dbj.fm.data.server2000">
+            <summary>
+            Summary of AdoNet class. Defines method and properties which helps in making various
+            calls like select, insert, update etc to the database using SqlConnection.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.#ctor(System.String)">
+            <summary>
+            Constructor of server2000
+            </summary>
+            <param name="conn_string">connection string</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.exception_report(System.Data.SqlClient.SqlException)">
+            <summary>
+            makes the string containing the full exception report from the given SqlException.
+            </summary>
+            <param name="e">OleDbException</param>
+            <returns>string representing exception report</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.get_table_names(dbj.fm.Idata.TableType)">
+            <summary>
+            Returns names of tables or views.
+            </summary>		
+            <param name="ttype">must be 'BASE TABLE' or 'VIEW'</param> 
+            <returns>array of names</returns>
+            <exception cref="T:System.Exception">on error throws an exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes a SQL statement against the Connection and returns the number of rows affected.
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns>Number of rows affected</returns>
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="T:dbj.fm.data.server2000.TRANSACTION_STATE">
+            <summary>
+            this is used for signaling what is the last transaction outcome
+            </summary>
+        </member>
+        <member name="T:dbj.fm.data.server2000.OPERATION_KIND">
+            <summary>
+            signal what kind of operation will be performed on the data
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.open_connection(System.Boolean,dbj.fm.data.server2000.OPERATION_KIND)">
+            <summary>
+            open the connection taking care of the transactional mode
+            it transaction is required
+            </summary>
+            <param name="WITH_TRANSACTION">true if transaction is required</param>
+            <param name="op_kind">Kind of operation</param> 
+        </member>
+        <member name="M:dbj.fm.data.server2000.close_connection(dbj.fm.data.server2000.TRANSACTION_STATE)">
+            <summary>
+            close the current connection, taking care of the possible transaction
+            and its outcome
+            </summary>
+            <param name="TxSTATE">commit or rollback, enum value</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.make_conn_str(System.String,System.String,System.String,System.String)">
+            <summary>
+            Makes connection string
+            </summary>
+            <param name="data_source_">Source of data</param>
+            <param name="user_id_">User Id</param>
+            <param name="user_password_">User Password</param>
+            <param name="initial_catalog_">database name</param>
+            <returns>string representing connection string</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor of server2000 Class
+            </summary>
+            <param name="data_source_">Source of data</param>
+            <param name="user_id_">User Id</param>
+            <param name="user_password">User Password</param>
+            <param name="initial_catalog_">database name</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.init(System.String)">
+            <summary>
+            init function for COM clients
+            </summary>
+            <param name="new_cs">connection string</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.construct">
+            <summary>
+            private called from constructors
+            </summary>
+            <exception cref="T:System.Data.SqlClient.SqlException">While making connection to the database if oledb 
+            error occurs then SqlException is thrown</exception>
+            <exception cref="T:System.Exception">If other than sqlException occurs Exception is thrown</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.select(System.String)">
+            <summary>
+            execute the SQL SELECT statement and return the data set.
+            Fills the resulting data set and creates a DataTable named "Table".
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns>DataSet</returns>
+            <exception cref="T:System.Exception">On error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.insert(System.String)">
+            <summary>
+            execute the SQL INSERT statement
+            </summary>
+            <param name="statement">Insert statement</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.update(System.String)">
+            <summary>
+            execute the SQL UPDATE statement
+            </summary>
+            <param name="statement">update statement</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.erase(System.String)">
+            <summary>
+            execute the SQL DELETE statement
+            </summary>
+            <param name="statement">Delete statement</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.exec(System.String)">
+            <summary>
+            execute the SQL EXEC statement
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.scalar(System.String)">
+            <summary>
+            Executes the query, and returns the first column of the first row 
+            in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="scalar_query">scalar query</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.select_command(System.String)">
+            <summary>
+            Makes SqlCommand to be assigned to SqlDataAdapter.SelectCommand
+            </summary>
+            <param name="statement">select sql statement</param>
+            <returns>SqlCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.insert_command(System.String)">
+            <summary>
+            Make SqlCommand to be assigned to SqlDataAdapter.InsertCommand
+            </summary>
+            <param name="statement">insert sql statement</param>
+            <returns>SqlCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.update_command(System.String)">
+            <summary>
+            Make SqlCommand to be assigned to SqlDataAdapter.UpdateCommand
+            </summary>
+            <param name="statement">update sql command</param>
+            <returns>SqlCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.delete_command(System.String)">
+            <summary>
+            Make SqlCommand to be assigned to SqlDataAdapter.DeleteCommand
+            </summary>
+            <param name="statement">delete sql statement</param>
+            <returns>SqlCommand</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.for_each_row(dbj.fm.data.visitor,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theVisitor">fm.data.visitor delegate</param>
+            <param name="select_statement">sql statement</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.getReaderFor(System.String)">
+            <summary>
+            returns DataReader
+            </summary>
+            <param name="statement">sql statement</param> 
+            <returns>IDataReader</returns> 
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.add_parameter(System.String,System.Data.SqlDbType,System.Data.ParameterDirection,System.Object,System.Int32)">
+            <summary>
+            returns Parameter object 
+            </summary>
+            <param name="param_direction">Direction of the parameter</param> 
+            <param name="param_name" >name of the parameter</param>
+            <param name="param_size">size of the parameter</param>
+            <param name="param_type">type of the parameter</param> 
+            <param name="param_value">value of the parameter</param> 
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.add_param_VARCHAR(System.String,System.Object,System.Int32,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of varchar type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >ParameterDirection</param>
+            <param name="param_size" >size of parameter</param>
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.add_param_INT(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of integer type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >ParameterDirection</param>		
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.add_param_DATETIME(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of datetime type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param> 
+            <param name="param_dir" >ParameterDirection</param>		
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.add_param_FLOAT(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of float type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >ParameterDirection</param>		
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.add_param_BOOL(System.String,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            Adds parameter of bool type to command object
+            </summary>
+            <param name="param_name">must be the same as the name in stored procedure</param>
+            <param name="param_dir" >ParameterDirection</param>		
+            <param name="param_value" >value of the parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.delete_parameters">
+            <summary>
+            deletes Parameters collection from command object
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.exec_sp_for_single_retval(System.String)">
+            <summary>
+            Executes command object and returns single int value from stored procedure
+            example : 
+            exec_sp_for_single_retval('sp_x')
+            </summary>
+            <param name="sp_name">the name of stored procedure</param>
+            <returns>
+            return singleint value, obtained through first parameter of the stored procedure
+            </returns>
+            <exception cref="T:System.Exception">On error throws an exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.exec_sp_command(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            execute SP and its parameters stored in a command
+            </summary>
+            <param name="command_">SqlCommand object</param> 
+            <exception cref="T:System.Exception">On error throws an exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.exec_sp_command_for_reader(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Execute SP and its parameters stored in a command, return the data reader.
+            </summary>
+            <param name="command_">SqlCommand object</param> 
+            <exception cref="T:System.Exception">On error throws an exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.fill_dataset(System.Data.DataSet,System.Data.SqlClient.SqlDataAdapter,System.String,System.String)">
+            <summary>
+            fill_dataset
+            </summary>
+            <param name="ds">DataSet</param>
+            <param name="ad">SqlDataAdapter</param>
+            <param name="statement">sql statement</param>
+            <param name="tbl_name">table name</param>
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="M:dbj.fm.data.server2000.check_statement(System.String)">
+            <summary>
+            Trims the given sql statement
+            </summary>
+            <param name="statement">sql statement</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.new_sp_call(System.String,dbj.fm.data.server2000.PARAM[])">
+            <summary>
+            Makes SPimplementation with the list of parameters supplied
+            </summary>
+            <param name="sp_name">name of the sp</param>
+            <param name="list">optional list of parameters</param>
+            <returns>SP</returns>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM">
+            <summary>Abstraction of one parameter for the stored procedure.</summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.direction_">
+            <summary>
+            ParameterDirection
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.type_">
+            <summary>
+            SqlDbType
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.name_">
+            <summary>
+            parameter name
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.value_">
+            <summary>
+            parameter value
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.size_">
+            <summary>
+            size of parameter
+            </summary>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM.DIRECTION">
+            <summary>
+            Parameter direction enumerator
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.DIRECTION.IN">
+            <summary>
+            In parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.DIRECTION.OUT">
+            <summary>
+            Out parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.DIRECTION.INOUT">
+            <summary>
+            Inout parameter
+            </summary>
+        </member>
+        <member name="F:dbj.fm.data.server2000.PARAM.DIRECTION.RETVAL">
+            <summary>
+            Value returning parameter
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM.the_direction(dbj.fm.data.server2000.PARAM.DIRECTION)">
+            <summary>
+            Returns appropriate parameter dir based on the given direction
+            </summary>
+            <param name="dir">direction of parameter any of the value in 
+            Direction Enumeration defined in this class</param>
+            <returns>ParameterDirection</returns>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM.#ctor(System.Data.ParameterDirection,System.Data.SqlDbType,System.String,System.Object,System.Int32)">
+            <summary>
+            Constructor of PARAM class
+            </summary>
+            <param name="dir">direction of paramater</param>
+            <param name="typ">OleDbType</param>
+            <param name="name">name of the paramter</param>
+            <param name="val">value of the parameter</param>
+            <param name="siz">size of parameter</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM.to_command(System.Data.SqlClient.SqlCommand@)">
+            <summary>
+            make Parameter and add it to the command object given
+            </summary>
+            <param name="command_">SqlCommand object</param> 
+            <exception cref="T:System.Exception">on error throws System.Exception</exception>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM_BOOL">
+            <summary>
+            Makes a parameter of BOOL Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM_BOOL.#ctor(dbj.fm.data.server2000.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_BOOL class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM_FLOAT">
+            <summary>
+            Makes a parameter of FLOAT Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM_FLOAT.#ctor(dbj.fm.data.server2000.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_FLOAT class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM_DATETIME">
+            <summary>
+            Makes a parameter of DATETIME Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM_DATETIME.#ctor(dbj.fm.data.server2000.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_DATETIME class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM_INT">
+            <summary>
+            Makes a parameter of INT Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM_INT.#ctor(dbj.fm.data.server2000.PARAM.DIRECTION,System.String,System.Object)">
+            <summary>
+            constructor of PARAM_INT class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+        </member>
+        <member name="T:dbj.fm.data.server2000.PARAM_VARCHAR">
+            <summary>
+            Makes a parameter of VARCHAR Type
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.PARAM_VARCHAR.#ctor(dbj.fm.data.server2000.PARAM.DIRECTION,System.String,System.Object,System.Int32)">
+            <summary>
+            constructor of PARAM_VARCHAR class
+            </summary>
+            <param name="direnum">Direction of the parameter</param>
+            <param name="nam">name of the parameter</param>
+            <param name="val">value of the parameter</param>
+            <param name="siz">size of the parameter</param> 
+        </member>
+        <member name="T:dbj.fm.data.server2000.SP">
+            <summary>
+            Encapsulates an parameterized call to the stored procedure
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SP.add_p(dbj.fm.data.server2000.PARAM)">
+            <summary>
+            add the parameter for SP call
+            </summary>
+            <param name="the_parameter">instance of the PARAM</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SP.exec_for_retval">
+            <summary>execute the stored proc. and return the single return value.
+            NOTE: does not return 'rows affected'</summary>
+            <returns>return value obtained through Param[0].Value</returns>
+        </member>
+        <member name="P:dbj.fm.data.server2000.SP.Item(System.String)">
+            <summary>
+            get or set the value of the named SP property
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SP.for_each_row(dbj.fm.data.server2000.ResultVisitor)">
+            <summary>
+            
+            </summary>
+            <param name="theVisitor"></param>
+        </member>
+        <member name="T:dbj.fm.data.server2000.ResultVisitor">
+            <summary>
+            ResultVistitor Interface
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.ResultVisitor.take_row(System.Object[])">
+            <summary>
+            one row proessing method
+            </summary>
+            <param name="values">array of values for a single row</param>
+        </member>
+        <member name="T:dbj.fm.data.server2000.SPimplementation">
+            <summary>
+            SP implementation
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SPimplementation.#ctor(dbj.fm.data.server2000,System.String)">
+            <summary>
+            Constructor of SPimplementation class
+            </summary>
+            <param name="host">server2000 object</param>
+            <param name="name">name of the sp</param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SPimplementation.add_p(dbj.fm.data.server2000.PARAM)">
+            <summary>
+            adds the parameter to the command object
+            </summary>
+            <param name="the_parameter"></param>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SPimplementation.exec_for_retval">
+            <summary>
+            Executes the sp
+            </summary>
+            <returns>the number of rows affected</returns>
+        </member>
+        <member name="P:dbj.fm.data.server2000.SPimplementation.Item(System.String)">
+            <summary>
+            Indexer for this class helps in setting and retriving parameter values for the command
+            </summary>
+        </member>
+        <member name="M:dbj.fm.data.server2000.SPimplementation.for_each_row(dbj.fm.data.server2000.ResultVisitor)">
+            <summary>
+            apply each result row to the visitor 
+            </summary>
+            <param name="theVisitor">instance of the visitor delegate</param>
+        </member>
+        <member name="T:dbj.fm.Itypeinfo">
+            <summary>Reflection services.
+            </summary>
+            <remarks>
+            <p>Implementatio of this class encapsualtes the issues of getting the reflection
+            information on the arbitrary .NET type.</p>
+            <p>Instance of the implementation may me obtained only through core.make_service() method</p>
+            <p>The information in the finished 'report' is not structured or user definable in any way.</p>
+            <p>It is simply a string for end users. Use of this functionality is mainly limited to 
+            testing and diagnostic tools.</p>
+            <p>Making of this service through core.make_service() method requires no additional parameters.</p>
+            </remarks>
+            <example><code>
+            dbj.fm.Itypeinfo ti_ = dbj.fm.core.make_service( 
+                                                 dbj.fm.ServiceID.Reflection
+                                                 ) ;
+            </code></example>
+        </member>
+        <member name="T:dbj.fm.Itypeinfo.WHAT">
+            <summary>
+            Enum of flags used by callers to describe, what the caller wants to be described
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.FIELDS">
+            <summary>
+            show fields only
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.METHODS">
+            <summary>
+            show methods only
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.PROPERTIES">
+            <summary>
+            show properties only
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.INTERFACES">
+            <summary>
+            show interfaces only
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.PARENT">
+            <summary>
+            show the parent class only
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.ATTRIBUTES">
+            <summary>
+            show the result of Type.Attributes
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.INTERFACE_METHODS">
+            <summary>
+            display also methods on interfaces
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Itypeinfo.WHAT.ALL">
+            <summary>
+            show everything available
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Itypeinfo.describe(System.Object,dbj.fm.Itypeinfo.WHAT)">
+            <summary>
+            The only methods on this interface for getting the description.
+            </summary>
+            <param name="specimen">instance to be described</param>
+            <param name="what_part">or-ed enum values teling us what caller wants described</param>
+            <returns>report in a string</returns>
+        </member>
+        <member name="T:dbj.fm.Idata">
+            <summary>
+            Data services.
+            </summary>
+            <remarks>
+            Implementatio of this class encapsualtes the issues of getting the data
+            from the database in a simple and un-cluttered manner. Manner in which more than 90%
+            of code uses the databases.
+            <p>Instance of the implementation may me obtained only through core.make_service() method</p>
+            <p>To obtain data library specific functionality users may instantiate their implementations
+            directly, as available in the fm.data namespace.</p>
+            <p>Making of this service through core.make_service() method requires two additional parameterers</p>
+            <p>First is a flag telling us which data library caller want to use</p>
+            <p>Second is an connection string which is applicable to (usable by) implementation required.</p>
+            </remarks>
+            <example><code>
+                fm.Idata db_ = fm.core.make_service( 
+                                                 fm.ServiceID.Data,
+                                                 fm.Idata.SQLSRV ,
+                                                 connection_string // made elsewhere
+                                                 ) ;
+            </code></example>
+        </member>
+        <member name="T:dbj.fm.Idata.Store">
+            <summary>
+            values of this enum define implementations provided.
+            NOTE: ADO indeed covers both Oracle and SQLServer
+            but is slower and provides legacy objects whic take
+            more memory and give less functionality, vs .NET System.Data
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Idata.Store.ADO">
+            <summary>
+            Use ADO 
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Idata.Store.SQLSRV">
+            <summary>
+            Use native SQLSRV library
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Idata.Store.ORACLE">
+            <summary>
+            Use ORACLE library. Reserved. Not implemented yet.
+            </summary>
+        </member>
+        <member name="T:dbj.fm.Idata.TableType">
+            <summary>
+            Values of this enum define types of tables like table ,view etc
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Idata.TableType.TABLE">
+            <summary>
+            Use table
+            </summary>
+        </member>
+        <member name="F:dbj.fm.Idata.TableType.VIEW">
+            <summary>
+            Use view
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Idata.get_table_names(dbj.fm.Idata.TableType)">
+            <summary>
+            Return all tables names from the underlying database.
+            </summary>
+            <param name="ttype">Idata.TableType</param>
+            <returns>an array consisting of table types</returns>
+        </member>
+        <member name="M:dbj.fm.Idata.insert(System.String)">
+            <summary>
+            execute the SQL INSERT statement 
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Idata.update(System.String)">
+            <summary>
+            execute the SQL UPDATE statement 
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Idata.erase(System.String)">
+            <summary>
+            execute the SQL DELETE statement 
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Idata.exec(System.String)">
+            <summary>
+            execute the SQL EXEC statement 
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Idata.init(System.String)">
+            <summary>
+            init must be implemented because of COM clients
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Idata.for_each_row(dbj.fm.data.visitor,System.String)">
+            <summary>
+            invoke a visitor argument for each row of the result of the SQL select statement given.
+            <seealso cref="T:dbj.fm.data.visitor" />
+            </summary>
+            <example><code>
+                fm.Idata dta = core.get_service( dbj.fm.ServiceID.Data , dbj.fm.Idata.Store.SQLSRV , connection_string ) ;
+            	const string statement = "SELECT * FROM customers" ;
+            	Collector collector = new Collector() ;
+            	// Collector has to implement public void collect ( object the_row ), method
+            	dbj.fm.data.visitor db_visitor = new dbj.fm.data.visitor( collector.collect ) ;
+            	dta.for_each_row( db_visitor, statement ) ;
+            </code></example>
+        </member>
+        <member name="T:dbj.fm.Iconfiguration">
+            <summary>
+            Configuration service.
+            </summary>
+            <remarks>
+            <p>An extension to the .NET configuration mechanism.
+            Opposite of the default configuration available in .NET this service makes per assembly 
+            configuration files possible. </p>
+            <p>Assembly configuration file name is made by following the same pattern as application configuration files. 
+            If assembly output is called : </p>
+            <p><pre>myAssembly.dll</pre></p>
+            <p>Its configuration must be stored in a file named:</p>
+            <p><pre>myAssembly.dll.config</pre></p>
+            <p>
+            Dbj configuration files are defined per-assembly. 
+            Each of them can have one or more dbj_config nodes.
+            Each of them must have a name attribute. Only one of them can be
+            without name attribute and is treated specially.
+            Configuration nodes used by this mechanism (and this library) MUST be called :</p>
+            <p><b><pre>dbj_config</pre></b></p>
+            <p>XML schema of the unnamed dbj_config node is the same as for normal .NET config files, settings node.</p>
+            <p>See the example configuration file bellow.</p>
+            </remarks>
+            <example><code>
+            
+                    // this is how dbj configuration service is instantiated
+                    // in your code
+            		dbj.fm.Iconfiguration cfg = core.get_service( 
+            				dbj.fm.ServiceID.Configuration , 
+            				// Always use GetCallingAssembly() only !
+            				System.Reflection.Assembly.GetCallingAssembly()
+            			) ;
+            			
+            </code>
+            <code escaped='true'>
+            
+            <!-- 
+                 Please use this sample configuration file when observing 
+                 particular configuration methods description.
+            -->
+            <configuration>
+            <!-- there can be only ONE unnamed dbj_config node -->
+            <dbj_config>
+            <!-- This keys are MANDATORY for the dbj.fm tracer mechanism -->
+            <add key="trace_level" value="4" />
+            <add key="trace_style_type" value="text/xsl" />
+            <add key="trace_style_file" value="../dbjtraceshow.xsl" />
+            </dbj_config>
+            <!-- example of a named dbj_config node -->
+            	<dbj_config name="endpoints" >
+            		 <endpoint>
+            			<progid>dbj.ep5001</progid>
+            		</endpoint>
+            	</dbj_config>
+            </configuration>
+            
+            </code></example>
+        </member>
+        <member name="P:dbj.fm.Iconfiguration.file_name">
+            <summary>
+            name of the config file implmentation wants.
+            it depends on the assembly making it.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Iconfiguration.config_node_name">
+            <summary>
+            the name of the config node which is going to be processed by this service.
+            Other nodes are ignored.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Iconfiguration.get_value(System.String)">
+            <summary>
+            get value assoicated with a key :
+            </summary>
+            <param name="key">the key name</param>
+            <returns>fm.Implicitor object that allows for transparent casting</returns>
+            <example><code>
+            ...
+            <!-- the config file -->
+            <assemblySettings>
+            <add key="tracing" value="true" />
+            </assemblySettings>
+            ...
+            bool tracing_switch = get_value("tracing") ;
+            // get_value() returns fm.Implicitor
+            // tracing_switch resolves transparently to boolean true
+            </code></example>
+        </member>
+        <member name="M:dbj.fm.Iconfiguration.get_asxml">
+            <summary>
+            get every config node as xmlnode regardles of its kind
+            </summary>		
+            <returns>list of XML nodes</returns>
+        </member>
+        <member name="M:dbj.fm.Iconfiguration.get_asxml(System.String)">
+            <summary>
+            get every config node where attrib name eq givne name as xmlnode regardles of its kind
+            </summary>		
+            <param name="name">attribute value in tranzax_settings node for which 
+            xmlnodelist has to be retrived</param> 
+            <returns>list of XML nodes</returns>
+        </member>
+        <member name="T:dbj.fm.Itransformer">
+            <summary>
+            xml transformations service interface.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Itransformer.transform_for_request(System.String)">
+            <summary>
+            apply xsl on the xml request when sending out of the system
+            </summary>
+            <param name="xml_request">xml in a string</param>
+            <returns>transformed xml in a string</returns>
+        </member>
+        <member name="M:dbj.fm.Itransformer.transform_for_reply(System.String)">
+            <summary>
+            apply xsl on the xml request when replying the hosting system
+            </summary>
+            <param name="xml_reply">xml in a string</param>
+            <returns>transformed xml in a string</returns>
+        </member>
+        <member name="T:dbj.fm.Itracer">
+            <summary>
+            Tracing service interface.
+            </summary>
+            <remarks>
+            <p>The tracing information is saved in xml files. The tracing is independent for each 
+            calling assembly using it.</p>
+            <p>If folder using this service is called myAssembly then the trace files are 
+            saved in the sub follder named 'trace_myAssembly'</p>
+            <p>Each trace xml file name will be made like this:</p>
+            <pre>
+            myAssembly_20050225172000_0.xml
+            </pre>
+            <p>Assembly name + ISO time stamp + "_" + trace sequence number.</p>
+            <p>Please see the example bellow for the internals of a sample trace file.
+            The dbjtraceshow.xsl, is provided with a library as a default xsl file, that may be used.
+            </p><p>Please feel free to write your own xsl to display trace files in a browser of your choice.</p>
+            <p>The behaviour of the service depends on configuration file settings.</p>
+            <p>There are three keys which are mandatory for each config file. 
+            They define the dbj tracing service behaviour.
+            They must be inside the anonymous (unnamed) dbj_config node</p>
+            <pre>
+            trace_level                 see the possible values bellow<br />
+            trace_style_type"           always: "text/xsl"<br />
+            key="trace_style_file"		the xsl file name<br />
+            </pre>
+            <p>'trace_level' legal values are 0..4</p>
+            <pre>
+            0	OFF<br/>
+            1	ERROR<br/>
+            2	WARNING<br/>
+            3	INFO<br/>
+            4	VERBOSE<br/>
+            </pre>
+            <p>If this key is missing tracing is OFF. See the remarks on Itracer methods 
+            for further explanations.</p>
+            <p>If 'trace_style_type' and 'trace_style_file' are not set, tracing 
+            file made will not contain an 'xml-stylesheet' processing instruction.</p>
+            </remarks>
+            <example>
+            <code escaped='true'>
+            <!-- 
+            	Example config file showing mandatory keys for the tracing mechanism.
+            -->
+            <configuration>
+            <!-- there can be only ONE unnamed dbj_config node -->
+            <dbj_config>
+            <!-- This keys are MANDATORY for the dbj.fm tracer mechanism -->
+            <add key="trace_level" value="4" />
+            <add key="trace_style_type" value="text/xsl" />
+            <add key="trace_style_file" value="../dbjtraceshow.xsl" />
+            </dbj_config>
+            <!-- the rest of file -->
+            </configuration>
+            </code></example>
+            <example><code escaped="true">
+            <!--
+                Example of a trace file source. Assembly which used the tracing service
+                is called 'dbj_ept'
+            -->
+            <?xml-stylesheet type='text/xsl' href='../dbjtraceshow.xsl' ?>
+            <trace timestamp="20050225172432" assembly="dbj_ept, Version=2.0.1882.27464, Culture=neutral, PublicKeyToken=7385268609f9297c">
+            <switch displayname="trace_level" description="dbj_ept Assembly trace switch" level="Verbose" />
+            <line timestamp="20050225172432"><![CDATA[
+            dbj_ept, Version=2.0.1882.27464, Culture=neutral, PublicKeyToken=7385268609f9297c
+            Corelib Version : 5.0.0.0(RELEASE)
+            ]]></line>
+            <line timestamp="20050225172433"><![CDATA[Testing TzxMsg.wsep]]></line>
+            <line timestamp="20050225172433"><![CDATA[ERROR]]></line>
+            <line timestamp="20050225172433"><![CDATA[System.Runtime.InteropServices.COMException (0x800401F3): Invalid class string
+            at System.Runtime.InteropServices.Marshal.MkParseDisplayName(UCOMIBindCtx pbc, String szUserName, UInt32& pchEaten, UCOMIMoniker& ppmk)
+            at System.Runtime.InteropServices.Marshal.BindToMoniker(String monikerName)
+            at dbj.fm.util.make_new_com_object(String progid)
+            at dbjept.Behind.setup_the_tested_component_proxy(String the_prog_id)]]></line>
+            <!-- Tracing closed at : 20050225172435 -->
+            </trace>
+            </code></example>
+        </member>
+        <member name="P:dbj.fm.Itracer.subclass">
+            <summary>
+            if subclass property is set, the tracefile will be made
+            in the sub-folder by the subclass name
+            otherwise it will be in the folder which is named same
+            as assembly which has made the tracer instance
+            subclass name string can contain only digits and letters
+            to prevent sub-sub classing ideas.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Itracer.error(System.Exception)">
+            <summary>
+            leave tracing info if level is set to ERROR (1), or higher
+            Also send the same message to the local evlog.
+            </summary>
+            <param name="x">exception instance</param>
+        </member>
+        <member name="M:dbj.fm.Itracer.error(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to ERROR (1), or higher
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args">optional list of arguments</param> 
+        </member>
+        <member name="M:dbj.fm.Itracer.warning(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to WARNING (2), or higher
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args">optional list of arguments</param> 
+        </member>
+        <member name="M:dbj.fm.Itracer.info(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to INFO (3), or higher
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args">optional list of arguments</param> 
+        </member>
+        <member name="M:dbj.fm.Itracer.verbose(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to VERBOSE (4)
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args">optional list of arguments</param> 
+        </member>
+        <member name="T:dbj.fm.Ievent_logger">
+            <summary>
+            Event logging services
+            </summary>
+            <remarks>
+            Logging can be done for different sources but all will be 
+            under the same logfile as defined by DBJ_EVLOG_LOGNAME
+            <h3>Security Note</h3>
+            <p>This service may not be used from the code which is behind ASP.NET pages,
+            or any other code running as a part of a solution which runs in the web server context.</p>
+            <p>This is because .NET does not allow access to the registry from a code without special credentials. And .NET 
+            implementation used by this service implementation requires registry access.</p>
+            <p>Please refer to the .NET security to learn about the solutions.</p>
+            <p>For ASP.NET applicatin one way is to ad the 'impersonation' line in the web.config file. Giving 
+            the login name and password of the user who has enough credentials to access the registry.</p>
+            </remarks>
+        </member>
+        <member name="P:dbj.fm.Ievent_logger.source_name">
+            <summary>
+            Logging can be done for different sources but all will be 
+            under the same logfile as defined by DBJ_EVLOG_LOGNAME
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Ievent_logger.error(System.String)">
+            <summary>
+            log error message
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Ievent_logger.error(System.Exception)">
+            <summary>
+            log the exception
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Ievent_logger.warn(System.String)">
+            <summary>
+            log warning message
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Ievent_logger.info(System.String)">
+            <summary>
+            log info message
+            </summary>
+        </member>
+        <member name="T:dbj.fm.core">
+            <summary>
+            Facade of the library.
+            </summary>
+            <remarks>
+            Through this class all the services of the library are delivered.
+            Designad after a 'facade' design pattern.
+            </remarks>
+        </member>
+        <member name="F:dbj.fm.core.locker">
+            <summary>
+            Used for locking. 
+            </summary>
+        </member>
+        <member name="P:dbj.fm.core.DBJ_EVLOG_CORELIB_SOURCENAME">
+            <summary>
+            returns corelib source name in the event log
+            </summary>
+        </member>
+        <member name="P:dbj.fm.core.DBJ_EVLOG_LOGNAME">
+            <summary>
+            returns event log name
+            </summary>
+        </member>
+        <member name="P:dbj.fm.core.dbj_config_node_name">
+            <summary>
+            Name of the XML node, used for dbj configuration files.
+            <seealso cref="T:dbj.fm.Iconfiguration" />
+            </summary>
+        </member>
+        <member name="M:dbj.fm.core.make_service(dbj.fm.ServiceID,System.Object[])">
+             <summary>
+             Obtain the implementation of the service required.
+             <seealso cref="T:dbj.fm.ServiceID"/>
+             </summary>
+             <param name="which">service id</param>
+             <param name="args">optional list of argument that has to match service implementation requirements</param>
+             <returns>service wrap-up that allows for implicit casting</returns>
+             <remarks>
+             This is the 'factory method' implementation. All the key services implementation issues are encapsulated 
+             inside the library. This method also encapsulates HOW are they instances made. Are they singletons, are they 
+             made on heap or on the stack, are they pooled, etc.
+             Each services interface is publicly available as an abstract class.
+             To make caller able to require exact service, first argument has to be a element from 
+             the dbj.fm.ServiceID enum.
+             Please read each services interface documentation to understand its behavior and parameters
+             required in order to instantiate each of them.
+             To have a single method like this, make and return possibly diverse types, is made possible by
+             returning object of type fm.FactoryImplicitor. Which use is completely transparent thanks
+             to its implicit conversion operators.
+             While there is quite a lot of activity going on behind the scenes , one can see 
+             in the example bellow, how simple the code using all of this really looks.
+             </remarks>
+             <example><code>
+             
+             		// Please remember what type is returned from make_service()
+             		// the casting to the fm.Iconfiguration is transparently executed
+              		dbj.fm.Iconfiguration	cfg_ = dbj.fm.core.get_service( 
+            				dbj.fm.ServiceID.Configuration ,               // enum element 
+            				System.Reflection.Assembly.GetExecutingAssembly()   // reference to the calling assembly
+            				) ;
+            	
+            
+             </code></example>
+             <threadsafety static="true" instance="false"/>
+        </member>
+        <member name="T:dbj.fm.util">
+            <summary>
+            Collection of various utility methods.
+            Instances of this class can not be made. 
+            All public methods are static.
+            </summary>
+            <threadsafety static="true" instance="false"/>
+        </member>
+        <member name="F:dbj.fm.util.locker">
+            <summary>
+            Used for locking. 
+            </summary>
+        </member>
+        <member name="P:dbj.fm.util.config_file">
+            <summary>
+            Return the name of the configuration file, as defined by current AppDomain private data.
+            </summary>
+        </member>
+        <member name="P:dbj.fm.util.codebase">
+            <summary>
+            Returns path of the base directory of the calling assembly, as defined by current AppDomain
+            </summary>
+        </member>
+        <member name="M:dbj.fm.util.domain_name">
+            <summary>
+            User domain name
+            </summary>
+        </member>
+        <member name="M:dbj.fm.util.computer_name">
+            <summary>
+            Machine name, on which this assembly is running.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.util.user_name">
+            <summary>
+            Return just a user name, never return a domain\uname format.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.util.array2objarray(System.Array)">
+            <summary>
+            Encapsulation of the ArayList.Adapter() usage. 
+            </summary>
+            <param name="source_">any kind of a array</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:dbj.fm.util.compare(System.String,System.String,System.Boolean[])">
+            <summary>
+            Return true if two strings are identical. 
+            Case sensitive if anythung as an third argument is supplied.
+            </summary>
+            <example>
+            <code>
+            
+            compare( "dbj", "DBJ", true ) ; // returns false
+            compare( "dbj", "DBJ", 1 )    ; // returns false
+            compare( "dbj", "DBJ", "")    ; // returns false
+            compare( "dbj", "DBJ" )       ; // returns true
+            
+            </code>
+            </example>
+        </member>
+        <member name="M:dbj.fm.util.ASSERT(System.Boolean)">
+            <summary>
+            Throw exception if argument resolves to false
+            Non existent in release builds
+            </summary>
+            <param name="obj" >boolean value</param>
+        </member>
+        <member name="M:dbj.fm.util.stringValueExistsInArray(System.Object[],System.Object)">
+            <summary>Return true if string is found in an array</summary>
+            <param name="array">array on which search needs to be performed</param>
+            <param name="val" >value to be searched in the array</param>
+        </member>
+        <member name="M:dbj.fm.util.make_if_begins_with(System.Object[],System.String)">
+            <summary>
+            Return new array made from values of the existing array, only if they begin with given string.
+            
+            Example :
+            
+            { "merry","mother","daddy" } , "m"
+            
+            gives
+            
+            { "merry", "mother" }
+            
+            </summary>
+            <param name="arr" >array to search</param>
+            <param name="begins_with" >start string to be searched</param>
+        </member>
+        <member name="M:dbj.fm.util.Run(System.String,System.String,System.Int32)">
+            <summary>
+            start the external process
+            </summary>
+            <param name="argsLine" >arguments</param>
+            <param name="exeName" >name of the executable</param>
+            <param name="timeoutSeconds" >time out in seconds</param>
+            <returns>the output</returns>
+            <remarks>If timeout argument is 0 caling process is not waiting for the new process.
+            Otherwise wait for given number of seconds happens, and possible standard output result 
+            is returned in a single string.</remarks>
+        </member>
+        <member name="M:dbj.fm.util.execute(System.String,System.String,System.Int32)">
+            <summary>
+            Shell execute the process with argLine 
+            </summary>
+            <param name="argsLine" >arguments to be passed</param>
+            <param name="exeName" >name of the executable</param>
+            <param name="timeoutSeconds" >time out in seconds</param>
+            <returns >string</returns>
+        </member>
+        <member name="M:dbj.fm.util.version">
+            <summary>
+            Finds the version of the executing assembly
+            </summary>
+            <returns>string representing version of the executing assembly</returns>
+        </member>
+        <member name="M:dbj.fm.util.build_label">
+            <summary>
+            Returns a string denoting wether debug or release version of the assembly is in use.
+            </summary>
+            <returns>"DEBUG" if debug build is used.</returns>
+            <returns>"RELEASE" if release build is used.</returns>
+        </member>
+        <member name="M:dbj.fm.util.cast(System.Xml.XmlNode,System.String,System.Object[])">
+            <summary>
+            Get the value from the xml node, and cast it implicitly.
+            </summary>
+            <remarks>This in effect converts xml string values into the type of variable receiving the result
+            of this method.
+            <p>Through the magic of the Implicitor, which is the actual return type.</p></remarks>
+            <example><code>
+            // These are both legal calls
+            // find a first node called 'wait' under the endpoint_setting
+            // return it's string value and cast it into the 'int' type
+            // this 'magic' can be done for any type that Implicitor supports.
+            int wait =  dbj.fm.util.cast( endpoint_setting, "wait" ) ;
+            string progid =  dbj.fm.util.cast( endpoint_setting, "progid" ) ;
+            
+            // what actually happens is this
+            fm.Implicitor temporary =  dbj.fm.util.cast( endpoint_setting, "wait" ) ;
+            int wait = temporary ;
+            </code>
+            <code>
+            // Fallback value may be optionaly given. 
+            // Exception is NOT thrown in this case
+            // UNLESS fallout type is different than the required result type!
+            string progid =  dbj.fm.util.cast( endpoint_setting, "progid", "DEFAULT.PROGID" ) ;
+            // Following line throws the exception from the Implicitor
+            int wait =  dbj.fm.util.cast( endpoint_setting, "wait", "Has to be 'int'" ) ;
+            </code>
+            </example>
+            <param name="xmlnode">the root node</param>
+            <param name="name">tag name of the required child node</param>
+            <param name="fallback">Optionaly a fallback value is given if node by given name is not found.</param>
+            <returns>instance of the Implicitor</returns>
+        </member>
+        <member name="M:dbj.fm.util.timestamp">
+            <summary>
+            Generate the timestamp by the ISO standard. Format used is: yyyyMMddHHmmss
+            </summary>
+            <returns>the timestamp string</returns>
+        </member>
+        <member name="M:dbj.fm.util.make_new_com_object(System.String)">
+            <summary>
+            Create an arbitrary com object from progid given.
+            <seealso cref="M:dbj.fm.util.make_new_com_object(System.String)" />
+            </summary>
+            <param name="progid">the prog id</param>
+            <returns>object, which has to be casted to one of the interfaces that is implemented.</returns>
+            <remarks>
+            Although this method returns System.Object, 
+            the 'real' type returned is Remoting.__TransparentProxy , an internal .NET class.
+            Although you can call methods of this interface through reflection, the best and
+            safest usage pattern is to cast the result to the interface and then use it.
+            This method obtains instances only from the local host.
+            </remarks>
+            <example>
+            <code>
+            // IDcoument may be imported from the IDL or TLB file.
+            public Interface IDocument {
+            		string title () ;
+            }
+            // make new instance of the document COM(+) object
+            // cast ti to interface 
+            IDocument doc = (IDocument)dbj.fm.util.maken_new_com_object("MY.DOCUMENT");
+            // use it
+            string title = doc.title() ;
+            </code>
+            </example>
+        </member>
+        <member name="M:dbj.fm.util.make_new_com_object(System.String,System.String)">
+            <summary>
+            Make com(+) instance on the required machine.
+            </summary>
+            <param name="progid">prog id</param>
+            <param name="hostname">hostname, use 'localhost' for local machine</param>
+            <returns>reference to remote object proxy</returns>
+            <remarks>
+            COM setup required for this method to work is explained in the MSDN as
+            related to the Type.GetTypeFromProgID() method.
+            If this method can not create the instance you need from the remote machine, please be sure you have read about 
+            the setup required.
+            </remarks> 
+        </member>
+        <member name="M:dbj.fm.util.have_permission(System.Security.IPermission)">
+             <summary>
+             Check permission helper.Checks the single permision.
+             </summary>
+             <param name="perm">Required permision instance</param>
+             <returns>True if demand for permission required is succeeded.</returns>
+             <example>
+             <code>
+             void SaveHighScore(string name, int score) 
+            	{
+            		IPermission perm =	new FileDialogPermission(FileDialogPermissionAccess.Save);
+            		if( ! dbj.fm.util.have_permission(perm) ) 
+            		{
+            			MessageBox.Show("Doh!");
+            			return;
+            		}
+            }
+             </code></example>
+        </member>
+        <member name="M:dbj.fm.util.have_permission(System.Security.PermissionSet)">
+            <summary>
+            Check permisions on the whole permision set at once.
+            </summary>
+            <param name="pset" >An PermissionSet instance</param>
+            <returns>True if demand for permission required is succeeded.</returns>
+        </member>
+        <member name="T:dbj.fm.Error">
+            <summary>
+            The exception class made to be used in this library. 
+            </summary>
+            <remarks>This exception may be thrown, by code from this library.
+            It also automatically sends its message to the event log.
+            Users of this library can differentiate between other exceptions
+            and exceptions thrown from inside this library. </remarks>
+            <example><code>
+            
+            try {
+            		dt.execute("sp_settle");
+            } catch ( fm.Error e )
+            {
+                 ... corelib specific error ...
+            }		
+            catch ( Exception x ) 
+            {
+                ... all the other errors ...
+            }
+            </code></example>
+        </member>
+        <member name="M:dbj.fm.Error.prefix(System.String)">
+            <summary>
+            Appends given string to prefix defined in here
+            </summary>
+            <param name="msg">message to be apppended to prefix</param>
+            <returns>string</returns>
+        </member>
+        <member name="P:dbj.fm.Error.isLogged">
+            <summary>
+            True if error was logged
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Error.#ctor">
+            <summary>
+            Default constructor of the Error class
+            </summary>				
+        </member>
+        <member name="M:dbj.fm.Error.#ctor(System.String)">
+            <summary>
+            Construct the Error class with an arbitrary message.
+            </summary>
+            <param name="msg">message </param>
+        </member>
+        <member name="M:dbj.fm.Error.#ctor(System.String,System.Exception)">
+            <summary>
+            Construct the Error class with an arbitray message and an System.Exception instance.
+            </summary>
+            <param name="msg">string containing messsage</param>
+            <param name="the_cause">Exception</param>
+        </member>
+        <member name="P:dbj.fm.Error.ERR_NUM">
+            <summary>
+            Predefined Error number for DBJ*Corelib errors.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.Error.log(dbj.fm.Error)">
+            <summary>
+            logs an error into the event log
+            </summary>
+            <param name="x">Error</param>
+            <returns>boolean value indicating log is successfull or not</returns>
+            <exception cref="T:dbj.fm.Error"></exception>
+        </member>
+        <member name="M:dbj.fm.Error.html_format(System.Exception)">
+            <summary>
+            Formats the given exception into the html fragment.
+            </summary>
+            <param name="x">Exception to be formated</param>
+            <returns>string representing exception in the form of html</returns>
+            <remarks>
+            This method may be used when Exception ha to be displayed to users on HTML page.
+            </remarks>
+        </member>
+        <member name="T:dbj.fm.Error.NotImplemented">
+            <summary>
+            Thrown from methods which are not implemented. Used mostly when developing them.
+            </summary>
+            <example><code>
+            class myClass {
+            	void method () {
+            		throw new dbj.fm.NotImplemented() ;
+            	}
+            }
+            </code></example>
+        </member>
+        <member name="M:dbj.fm.Error.NotImplemented.#ctor">
+            <summary>
+            default conctructor.
+            </summary>
+        </member>
+        <member name="T:dbj.fm.evlog.internal_log">
+            <summary>
+            Summary description for corelibprivaterrlog.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.internal_log.check">
+            <summary>
+            Determines whether specified event source is registered on a specified computer , 
+            if does not exists creates event source
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.internal_log.info(System.String)">
+            <summary>
+            Writes an iformation entry with the given message text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="msg">Message to be written into event log</param>
+        </member>
+        <member name="M:dbj.fm.evlog.internal_log.warn(System.String)">
+            <summary>
+            Writes an warning audit entry with the given message text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="msg">Message to be written into event log</param>
+        </member>
+        <member name="M:dbj.fm.evlog.internal_log.error(System.Exception)">
+            <summary>
+            Writes an error audit entry with the given message text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="x">Message to be written into event log</param>
+        </member>
+        <member name="T:dbj.fm.evlog.service">
+            <summary>
+            Summary description for evlogservice.
+            </summary>
+        </member>
+        <member name="T:dbj.fm.evlog.service.LOG">
+            <summary>
+            Contains methods for various types of Messages to be written into event log
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.service.LOG.check(System.String)">
+            <summary>
+            Determines whether specified event source is registered on a specified computer , 
+            if does not exists creates event source
+            </summary>
+            <param name="src">Event Source Name</param>
+        </member>
+        <member name="M:dbj.fm.evlog.service.LOG.info(System.String,System.String)">
+            <summary>
+            Writes an information entry with the given message text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="src">Event Source Name</param>
+            <param name="msg">Message to be written to the event log</param>
+        </member>
+        <member name="M:dbj.fm.evlog.service.LOG.warn(System.String,System.String)">
+            <summary>
+            Writes an warning entry with the given message text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="src">Event Source Name</param>
+            <param name="msg">Message to be written to the event log</param>
+        </member>
+        <member name="M:dbj.fm.evlog.service.LOG.error(System.String,System.Exception)">
+            <summary>
+            Writes an erorr entry with the given exception text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="src">Event Source Name</param>
+            <param name="x">Excpetion string</param>
+        </member>
+        <member name="M:dbj.fm.evlog.service.LOG.error(System.String,System.String)">
+            <summary>
+            Writes an erorr entry with the given message text to the event log, 
+            using the specified registered event source.
+            </summary>
+            <param name="src">Event Source Name</param>
+            <param name="msg">Message to be written to the event log</param>
+        </member>
+        <member name="M:dbj.fm.evlog.service.#ctor(System.String)">
+            <summary>
+            constructor of service class
+            </summary>
+            <param name="s_name">Name of event source</param>
+        </member>
+        <member name="P:dbj.fm.evlog.service.source_name">
+            <summary>
+            logging can be done for different sources but all will be 
+            under the same logfile as defined by DBJ_EVLOG_LOGNAME
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.service.error(System.String)">
+            <summary>
+            log error message
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.service.error(System.Exception)">
+            <summary>
+            log the exception
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.service.warn(System.String)">
+            <summary>
+            log warning message
+            </summary>
+        </member>
+        <member name="M:dbj.fm.evlog.service.info(System.String)">
+            <summary>
+            log info message
+            </summary>
+        </member>
+        <member name="T:dbj.fm.flags">
+             <summary>
+             Bit field encapsulation. Alloes enums and their element to be treated and operated upon,
+             as bit fields.
+             </summary>
+             <remarks>
+             An attribute [Flags] must be used on the enum whose elements you want to use as 'flags'. Attempt to use enums
+             without this attribute will cause an exception. See the example.
+             </remarks>
+             <example><code>
+            
+            		class driver
+            		{
+            			[Flags]
+            				enum opis { dupe = 1,sise = 2 ,noge = 4, faca = 8 }
+            				enum wrong { a,b,c,d }
+            
+            			[STAThread]
+            			static void Main(string[] args)
+            			{
+            				try 
+            				{
+            					dbj.flags mistaken = new dbj.flags( wrong.a ) ;
+            				} 
+            				catch ( dbj.flags.exception x )
+            				{
+            					Console.WriteLine( x.Message ) ;
+            				}
+            				dbj.flags bf = new dbj.flags( opis.dupe | opis.noge ) ;
+            
+            				compare(bf, opis.dupe) ;
+            				compare(bf, opis.sise) ;
+            				compare(bf, opis.noge) ;
+            				compare(bf, opis.faca) ;
+            
+            				compare( bf, new dbj.flags( opis.noge ) ) ;
+            				compare( bf, bf ) ;
+            
+            				compare( opis.dupe , opis.dupe | opis.noge ) ;
+            				compare( opis.dupe | opis.noge , opis.dupe | opis.noge ) ;
+            
+            			}
+            			static void compare ( dbj.flags bf , Enum v ) 
+            			{
+            				// here we use the '==' operator
+            				Console.WriteLine ( "[{0}] == [{1}], returns {2}" , bf,v, bf == v ) ;
+            			}
+            			static void compare ( dbj.flags bf1 , dbj.flags bf2 ) 
+            			{
+            				compare( bf1, (Enum)bf2 ) ;
+            			}
+            			static void compare ( Enum v1 , Enum v2 ) 
+            			{
+            			    // here we use the flags.Equals() method
+            				Console.WriteLine ( "[{0}] == [{1}], returns {2}" , v1,v2, v1.Equals(v2) ) ;
+            			}
+            		}
+            
+            	}
+            </code></example>
+        </member>
+        <member name="T:dbj.fm.flags.exception">
+            <summary>
+            Used for formating exception raised or occured while using flags
+            </summary>
+        </member>
+        <member name="M:dbj.fm.flags.exception.#ctor(System.String,System.Int32,System.Type)">
+            <summary>
+            Exception class used to better explain what is worng with your usage of dbj.fm.flags
+            </summary>
+        </member>
+        <member name="P:dbj.fm.flags.exception.Message">
+            <summary>
+            returns exception message
+            </summary>
+        </member>
+        <member name="M:dbj.fm.flags.#ctor(System.Enum)">
+            <summary>
+            flags class can be constructed only through this constructor
+            </summary>
+            <param name="v_">A valid Enum instance</param>
+        </member>
+        <member name="M:dbj.fm.flags.is_flag(System.Enum)">
+            <summary>
+            Check if the enum is adorned with the required attribute: 'Flags'
+            </summary>
+            <param name="e_">Enum instance</param>
+            <returns>true if 'Flags' is on of the attributes, false otherwise</returns>
+        </member>
+        <member name="M:dbj.fm.flags.contains(System.Enum)">
+            <summary>
+            Return true if enum parameter is present insde flags, in the current instance of this class.
+            </summary>
+            <param name="e">Enum instance</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:dbj.fm.flags.op_Equality(dbj.fm.flags,System.Enum)">
+            <summary>
+            Checks wether specified flag is equal to enum value passed to the method
+            </summary>
+            <param name="bf">flags</param>
+            <param name="e">enum</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:dbj.fm.flags.op_Inequality(dbj.fm.flags,System.Enum)">
+            <summary>
+            Checks wether specified flag is not equal to enum value passed to the method
+            </summary>
+            <param name="bf">flags</param>
+            <param name="e">enum</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:dbj.fm.flags.Equals(System.Object)">
+            <summary>
+            method using the '==' (Equals) operator on elements of Flags.
+            </summary>
+            <param name="e">Flags element</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:dbj.fm.flags.GetHashCode">
+            <summary>
+            Obtains the hashcode of the flags
+            </summary>
+        </member>
+        <member name="M:dbj.fm.flags.ToString">
+            <summary>
+            Obtains string form of the flags
+            </summary>
+        </member>
+        <member name="M:dbj.fm.flags.op_Explicit(dbj.fm.flags)~System.Enum">
+            <summary>
+            An explicit conversion to an Enum
+            </summary>
+        </member>
+        <member name="T:dbj.fm.Implicitor">
+            <summary>Implicitly convert value contained in the instance of this class, into the required type</summary>
+        </member>
+        <member name="M:dbj.fm.Implicitor.#ctor(System.Object)">
+            <summary>
+            Construct by delivering an arbitrary object.
+            Unless the object given is another Implicitor class in which 
+            case an Error will be thrown.
+            </summary>
+            <param name="val">value to be converted</param>
+        </member>
+        <member name="M:dbj.fm.Implicitor.mex(System.String)">
+            <summary>
+            make exception
+            </summary>
+            <param name="msg">error message</param>
+            <returns>the exception</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.date2sqldate(System.String)">
+            <summary>
+            converts the given date to yyyy-MM-dd format
+            </summary>
+            <param name="newdate">date to be converted</param>
+            <returns>string representing the converted date</returns>	
+        </member>
+        <member name="P:dbj.fm.Implicitor.asSqlDate">
+            <summary>value as SQL friendly short date</summary>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Implicit(dbj.fm.Implicitor)~System.Double">
+            <summary>
+            converts the value contained in Implicitor to double
+            </summary>
+            <param name="ep">Implicitor</param>
+            <returns>double</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Implicit(dbj.fm.Implicitor)~System.Int32">
+            <summary>
+            converts the value contained in Implicitor to int
+            </summary>
+            <param name="ep">Implicitor</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Implicit(dbj.fm.Implicitor)~System.String">
+            <summary>
+            converts the value contained in Implicitor to string
+            </summary>
+            <param name="ep">Implicitor</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Implicit(dbj.fm.Implicitor)~System.Boolean">
+            <summary>
+            converts the value contained in Implicitor to bool
+            </summary>
+            <param name="ep">Implicitor</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.ToString">
+            <summary>
+            return val_ defined in here to string
+            </summary>
+            <returns>string </returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.Equals(System.Object)">
+            <summary>
+            compares with object
+            </summary>
+            <param name="o">object</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Equality(dbj.fm.Implicitor,System.Boolean)">
+            <summary>
+            compare with boolean
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor equals supplied bool value</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Inequality(dbj.fm.Implicitor,System.Boolean)">
+            <summary>
+            compare with boolean
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor not equals supplied bool value</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Equality(dbj.fm.Implicitor,System.String)">
+            <summary>
+            compare with string
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor equals supplied string value</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Inequality(dbj.fm.Implicitor,System.String)">
+            <summary>
+            compare with string
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor not equals supplied string value</returns>
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Equality(dbj.fm.Implicitor,System.Int32)">
+            <summary>
+            compare with int
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor equals supplied int value</returns>		
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Inequality(dbj.fm.Implicitor,System.Int32)">
+            <summary>
+            compare with int
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor not equals supplied int value</returns>		
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Equality(dbj.fm.Implicitor,System.Double)">
+            <summary>
+            compare with double
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor equals supplied double value</returns>		
+        </member>
+        <member name="M:dbj.fm.Implicitor.op_Inequality(dbj.fm.Implicitor,System.Double)">
+            <summary>
+            compare with double
+            </summary>
+            <param name="im">Implicitor</param>
+            <param name="other">bool value</param>
+            <returns>true if the implicitor not equals supplied double value</returns>		
+        </member>
+        <member name="T:dbj.fm.reflection.service">
+            <summary>
+            Reflection service 
+            </summary>
+        </member>
+        <member name="M:dbj.fm.reflection.service.describe(System.Object,dbj.fm.Itypeinfo.WHAT)">
+            <summary>
+            describes about the type 
+            </summary>
+            <param name="specimen">Object to examine</param>
+            <param name="what_part">what the caller wants to describe</param>
+            <returns></returns>
+        </member>
+        <member name="T:dbj.fm.reflection.reflector">
+             <summary>
+             This reflector sheds the light on the object given. 
+             Example :
+             
+            	the_specimen = make_complus_instance( "TZXMSG.IMAGECOLLECTOR", "LOCALHOST" ) ;
+            	fm.reflector reflec = new fm.reflector( the_specimen) ;
+            	Console.WriteLine( 
+            		reflec.describe( 
+            			fm.reflector.Itypeinfo.WHAT.PARENT 
+            			| fm.reflector.Itypeinfo.WHAT.INTERFACES 
+            			| fm.reflector.Itypeinfo.WHAT.METHODS  
+            			)
+            		);
+            </summary>
+        </member>
+        <member name="T:dbj.fm.reflection.reflector.STRNGS">
+            <summary>
+            Contains various string definitions used in reflection
+            </summary>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.#ctor">
+            <summary>
+            default ctor is forbiden
+            </summary>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.#ctor(System.Object)">
+            <summary>
+            construct and take the instance to examine
+            </summary>
+            <param name="to_examine">object to examine</param>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.describe(dbj.fm.Itypeinfo.WHAT)">
+            <summary>
+            The only methods on the public interface used for getting the description.
+            </summary>
+            <param name="what_part">or-ed enum values teling us what caller wants described</param>
+            <returns>report in a string</returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.base_data(System.Type,System.Boolean)">
+            <summary>
+            Returns formated string containg type name and its attributes 
+            </summary>
+            <param name="type">Name of type</param>
+            <param name="with_attributes">boolean value indicating wether given contains attributes or not</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.fields(System.Object)">
+            <summary>
+            Examines the type and returns a string containing list of fields contained in the type
+            </summary>
+            <param name="specimen">object to examine</param>
+            <returns>string representing the fileds in the given type</returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.propertys(System.Object)">
+            <summary>
+            Examines the type and returns a string containing list of properties contained in the type
+            </summary>
+            <param name="specimen">object to examine</param>
+            <returns>string representing the propertys in the given type</returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.methods(System.Type,System.Boolean)">
+            <summary>
+            Examines the type and returns a string containing list of Methods contained in the type
+            </summary>
+            <param name="type">Name of the type to examine</param>
+            <param name="with_attributes">boolean value </param>
+            <returns>string representing the methods in the given type</returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.interfaces(System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            Examines the specified type and returns a string representing
+            the interfaces implemented or inherited by the current Type.
+            </summary>
+            <param name="specimen">Object to examine</param>
+            <param name="SHOW_ATTRIB">boolean value</param>
+            <param name="show_methods">boolean value</param>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.prefix_with(System.String,System.String)">
+            <summary>
+            prefix each text line found in a string with prefix given
+            </summary>
+            <param name="to_prefix">string of textlines</param>
+            <param name="prefix">the prefix</param>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.fm.reflection.reflector.Dispose">
+            <summary>
+            sets specimen_ object to null.
+            </summary>
+        </member>
+        <member name="T:dbj.fm.ServiceID">
+            <summary>
+            The enumumeration that uniquely identifies each service
+            </summary>
+        </member>
+        <member name="F:dbj.fm.ServiceID.Configuration">
+            <summary>Id of the Configuration service</summary>
+        </member>
+        <member name="F:dbj.fm.ServiceID.Tracing">
+            <summary>Id of the Tracing service</summary>
+        </member>
+        <member name="F:dbj.fm.ServiceID.Logging">
+            <summary>Id of the Logging service</summary>
+        </member>
+        <member name="F:dbj.fm.ServiceID.XMLTransformations">
+            <summary>Id of the XMLTransformations service</summary>
+        </member>
+        <member name="F:dbj.fm.ServiceID.Data">
+            <summary>Id of the Data service</summary>
+        </member>
+        <member name="F:dbj.fm.ServiceID.Reflection">
+            <summary>Id of the Reflection service</summary>
+        </member>
+        <member name="T:dbj.fm.service_factory">
+            <summary>
+            Summary description for service_factory.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.service_factory.get_service(dbj.fm.ServiceID,System.Object[])">
+            <summary>
+            make and return actual service implementation.
+            here we may use arguments list passed. this involves casting them to actual reauired types.
+            </summary>
+            <param name="args" >optional list of arguments contains calling assembly assembly ,connection string etc</param>
+            <param name="which" >name of service</param>
+        </member>
+        <member name="T:dbj.fm.FactoryImplicitor">
+            <summary>
+            Allow implicit conversion of the service factory results. 
+            Used as a type of the result of service_factory.get_service()
+            makes casting of the result 'invisible' and not required by callers.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.#ctor(System.Object)">
+            <summary>
+            Constructor of FactoryImplicitor class
+            </summary>
+            <param name="val"> value </param>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.mex(System.String)">
+            <summary>
+            Make Error instance
+            </summary>
+            <param name="msg">error message</param>
+            <returns>The DBJ*FM++ Error</returns>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.op_Implicit(dbj.fm.FactoryImplicitor)~dbj.fm.Itypeinfo">
+            <summary>
+            allow implict conversion to Itypeinfo
+            </summary>
+            <param name="ep" >FactoryImplicitor conting val to be type casted to Itypeinfo</param>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.op_Implicit(dbj.fm.FactoryImplicitor)~dbj.fm.Idata">
+            <summary>
+            allow implict conversion to Idata
+            </summary>
+            <param name="ep" >FactoryImplicitor conting val to be type casted to Idata</param>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.op_Implicit(dbj.fm.FactoryImplicitor)~dbj.fm.Iconfiguration">
+            <summary>
+            allow implict conversion to Iconfiguration
+            </summary>
+            <param name="ep" >FactoryImplicitor conting val to be type casted to Iconfiguration</param>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.op_Implicit(dbj.fm.FactoryImplicitor)~dbj.fm.Ievent_logger">
+            <summary>
+            allow implict conversion to Ievent_logger
+            </summary>
+            <param name="ep" >FactoryImplicitor conting val to be type casted to fm.Ievent_logger</param>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.op_Implicit(dbj.fm.FactoryImplicitor)~dbj.fm.Itracer">
+            <summary>
+            allow implict conversion to Itracer
+            </summary>
+            <param name="ep" >FactoryImplicitor conting val to be type casted to fm.Itracer</param>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.op_Implicit(dbj.fm.FactoryImplicitor)~dbj.fm.Itransformer">
+            <summary>
+            allow implict conversion to Itransformer
+            </summary>
+            <param name="ep">FactoryImplicitor conting val to be type casted to fm.Itransformer</param> 
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.as_data_svc">
+            <summary>
+            For VB.NET and other languages, implict operators are far from elegant
+            this is why we have to resort to this non-oo goo bellow ;)
+            </summary>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.as_config">
+            <summary>
+            allow implict conversion to Iconfiguration
+            </summary>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.as_evlogger">
+            <summary>
+            allow implict conversion to Ievent_logger
+            </summary>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.as_tracer">
+            <summary>
+            allow implict conversion to Itracer
+            </summary>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.as_transformer">
+            <summary>
+            allow implict conversion to Itransformer
+            </summary>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.ToString">
+            <summary>
+            returns string form of the val_ defined in this class
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="o"></param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:dbj.fm.FactoryImplicitor.GetHashCode">
+            <summary>
+            gets hashcode of the base
+            </summary>
+            <returns>int</returns>
+        </member>
+        <member name="T:dbj.fm.tracing.tracer">
+            <summary>
+            Summary description for tracer.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.tracer.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Constructor of tracer class
+            </summary>
+            <param name="asm">Reference to the caller assembly</param>
+        </member>
+        <member name="P:dbj.fm.tracing.tracer.subclass">
+            <summary>
+            if subclass property is set, the tracefile will be made
+            in the sub-folder by the subclass name
+            otherwise it will be in the folder which is named same
+            as assembly which has made the tracer instance
+            subclass name string can contain only digits and letters
+            to prevent sub-sub classing ideas.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.tracer.error(System.Exception)">
+            <summary>
+            leave tracing info if level is set to ERROR (1), or higher
+            Also send the same message to the local evlog.
+            </summary>
+            <param name="x">exception instance</param>
+        </member>
+        <member name="M:dbj.fm.tracing.tracer.error(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to ERROR (1), or higher
+            </summary>		
+            <param name="fmt">fromat string and arguments, or just a string</param> 
+            <param name="args"></param> 
+        </member>
+        <member name="M:dbj.fm.tracing.tracer.warning(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to WARNING (2), or higher
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args">object array</param>
+        </member>
+        <member name="M:dbj.fm.tracing.tracer.info(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to INFO (3), or higher
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args" >Object array</param>
+        </member>
+        <member name="M:dbj.fm.tracing.tracer.verbose(System.String,System.Object[])">
+            <summary>
+            leave tracing info if level is set to VERBOSE (4)
+            </summary>
+            <param name="fmt">fromat string and arguments, or just a string</param>
+            <param name="args">Object array</param> 
+        </member>
+        <member name="M:dbj.fm.tracing.AssemblyTraceSwitch.#ctor(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Constructor of AssemblyTraceSwitch class
+            </summary>
+            <param name="asm">calling assembly</param>
+            <param name="id">trace level</param>
+            <param name="description">description</param>
+            <exception cref="T:System.Exception">On error throws System.Exception</exception>	
+        </member>
+        <member name="P:dbj.fm.tracing.AssemblyTraceSwitch.DisplayName">
+            <summary>
+            returns trace level
+            </summary>
+        </member>
+        <member name="P:dbj.fm.tracing.AssemblyTraceSwitch.Description">
+            <summary>
+            returns description
+            </summary>
+        </member>
+        <member name="P:dbj.fm.tracing.AssemblyTraceSwitch.Level">
+            <summary>
+            sets or gets trace level
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.AssemblyTraceSwitch.style_instruction_pitext(System.String)">
+            <summary>
+            returns a formated string 
+            </summary>
+            <param name="href_prefix"></param>
+            <returns>string</returns>
+        </member>
+        <member name="T:dbj.fm.tracing.traceservice_implementation">
+            <summary>
+            Summary description for traceservice.
+            </summary>
+        </member>
+        <member name="P:dbj.fm.tracing.traceservice_implementation.trace_level">
+            <summary>
+            returns trace level
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.timestamp">
+            <summary>
+            returns timestamp of the format yyyyMMddHHmmss
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.log_file_full_path(System.Reflection.Assembly,System.String)">
+            <summary>
+            name of trace file is made using the assembly name and subfolder
+            </summary>
+            <param name="asm">reference to calling assembly</param>
+            <param name="sub_folder_name">name of the sub folder</param>
+            <returns>string representing path to the log file</returns>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.checkFileExits(System.String,System.String)">
+            <summary>
+            Checks for file existence and returns the count of files exists
+            </summary>
+            <param name="path">path of the folder to search for the files of specified format</param>
+            <param name="tstamp">timestamp</param>
+            <returns>int representing count of files with same time stamp</returns>
+        </member>
+        <member name="P:dbj.fm.tracing.traceservice_implementation.sub_folder">
+            <summary>
+            returns name of the sub folder
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.#ctor(System.Reflection.Assembly,System.String)">
+            <summary>
+            Constructor of traceservice_implementation  class
+            </summary>
+            <param name="calling_assembly"> reference to calling assembly</param>
+            <param name="sub_folder">name of the subfolder</param>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.open">
+            <summary>
+            creates logfile
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.Finalize">
+            <summary>
+            destructor of traceservice_implementation class
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.close">
+            <summary>
+            closes the trace
+            </summary>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.writeln(System.Exception)">
+            <summary>
+            used for writting details of exception to trace file
+            </summary>
+            <param name="x">Exception</param>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.writeln(System.String)">
+            <summary>
+            Writes given message to the trace file
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:dbj.fm.tracing.traceservice_implementation.writeln(System.String,System.Object[])">
+            <summary>
+            Writes message to the trace file
+            </summary>
+            <param name="fmt">format of the string</param>
+            <param name="args">object array</param>
+        </member>
+        <member name="T:dbj.fm.transformer">
+            <summary>
+            Empty implementation of the Itransformer interface.
+            </summary>
+        </member>
+        <member name="M:dbj.fm.transformer.#ctor">
+            <summary>
+            constructor of transformer
+            </summary>
+        </member>
+        <member name="M:dbj.fm.transformer.transform_for_request(System.String)">
+            <summary>
+            transforms request xml
+            </summary>
+            <param name="xml_request"></param>
+            <returns>Transformed xml</returns>
+        </member>
+        <member name="M:dbj.fm.transformer.transform_for_reply(System.String)">
+            <summary>
+            transforms reply xml
+            </summary>
+            <param name="xml_reply"></param>
+            <returns>Transformed xml</returns>
+        </member>
+    </members>
+</doc>

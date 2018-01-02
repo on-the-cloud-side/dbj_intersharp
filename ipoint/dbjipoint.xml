@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dbjipoint</name>
+    </assembly>
+    <members>
+        <member name="T:dbj.integration.ProcInfoIPoint">
+            <summary>
+            Sample implementation of the IPoint interface.
+            Purpose of this is to provide proc-info from an COM+ object
+            </summary>
+        </member>
+        <member name="M:dbj.integration.ProcInfoIPoint.#ctor">
+            <summary> COM requires default constructor </summary>
+        </member>
+        <member name="M:dbj.integration.ProcInfoIPoint.call(System.String,System.String@)">
+            <summary>
+            IPoint method to be implemented here
+            </summary>
+            <param name="request_for_the_external_system">ignored</param>
+            <param name="response_from_the_external_system">returns proc info in an XML</param>
+            <returns></returns>
+        </member>
+        <member name="M:dbj.integration.ProcInfoIPoint.CanBePooled">
+            <summary>
+             Can be pooled always
+            </summary>
+        </member>
+        <member name="T:dbj.integration.IPoint">
+            <summary>
+            Integration Point component Interface 
+            </summary>
+            <remarks>
+            Integration Point's  are conceptually small discrete components used 
+            to communicate FROM some application you are writting TO one
+            or more external (legacy) systems.<br/>
+            This interface is implemented by these integration components. 
+            The existence of this interface allows for run-time integration
+            components management. Usualy this components are implemented as 
+            COM+ components. Running application can 'discover' them through PROGID mechansim
+            and use them without recompilation because they all have the same IPoint interface.<br/>
+            One other side effect, is the ability to easier re-use components
+            implementing one simple and ubiquitous interface.<br/>
+            This interface supports SYNCHRONOUS communication from your application
+            to the external system. The coomunication patern is one of a simple 'call'
+            and wait for the return value.
+            </remarks> 
+            
+        </member>
+        <member name="M:dbj.integration.IPoint.call(System.String,System.String@)">
+            <summary>
+            method for 'calling' the external system.
+            </summary>
+            <param name="request_for_external_system">optional 'payload' to be sent to the external system.</param>
+            <param name="response_from_external_system">message or data sent from 'outside', after the call has finished.</param>
+            <returns>null or some other signaling value, depending on the implementation.</returns>
+            <remarks>
+            NOTE TO THE IMPLEMENTORS: Do not throw an exception from this method.
+            Instead implement some signaling protocol, whose values will be returned upon error or warning or simillar.
+            In general follow the COM rules when implementing this method
+            </remarks>
+        </member>
+    </members>
+</doc>

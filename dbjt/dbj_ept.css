@@ -1,0 +1,70 @@
+/*
+----------------------------------------------------------------------------------
+09MAR04 DBJ Created
+----------------------------------------------------------------------------------
+*/
+test { display:block ; font-family:Verdana,tahoma,arial; font-size:small ; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+date { display:inline ; border:1px solid; padding:2 ; margin: 2px; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+time { display:inline ; border:1px solid; padding:2 ; margin: 2px; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+progid { display:block ; font-weight:bold ; color:window; background-color:windowtext ; margin: 3px; padding:3px; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+request { display:block ;  }
+/*
+----------------------------------------------------------------------------------
+
+*/
+no_of_calls { display:block ; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+call_delay { display:block ; padding:2 ; margin: 2px; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+machine_name { display:block ; padding:2 ; margin: 2px; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+call count { display:block ; padding:2 ; margin: 2px; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+result { display:block ; padding:2 ; margin: 2px; border:1px solid windowtext; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+elapsed { display:block ;  padding:2 ; margin: 2px; border:1px solid windowtext; }
+/*
+----------------------------------------------------------------------------------
+
+*/
+call 
+{
+	display:block ; margin:5px; padding:3px; 
+	background-color:Silver; color:Black; 
+	font-family:Verdana,tahoma,arial; font-size:x-small ; 
+}
+/*
+----------------------------------------------------------------------------------
+eof
+*/
