@@ -73,7 +73,7 @@ namespace dbj.about
 				this.richCreditsBox.Text = x.ToString() ;
 			}
 			this.richCreditsBox.Width = this.ClientRectangle.Width - 20 ;
-            this.copyrightLabel.Text = "(c) 2003-2006 by " + Application.CompanyName ;
+            this.copyrightLabel.Text = "(c) 2003-2006-2018 by " + Application.CompanyName ;
 
             // this.Icon = new Icon(Util.GetResourceStream("dbj.ico"));
 		}
@@ -208,7 +208,7 @@ namespace dbj.about
 
 		private void linkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-				System.Diagnostics.Process.Start(new Uri("http://www.dbjsystems.com").ToString());
+				System.Diagnostics.Process.Start(new Uri("https://dbj.systems").ToString());
 		}
     }
 }

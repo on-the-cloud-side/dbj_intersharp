@@ -23,11 +23,11 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("DBJ*T#(tm)")]
-[assembly: AssemblyDescription("Can test any DBJ EndPoint enabled component, by changing the configuration file.")]
+[assembly: AssemblyDescription("By changing the configuration file, can test any DBJ EndPoint enabled component,")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DBJ*Solutions Ltd.")]
+[assembly: AssemblyCompany("DBJ.Systems ex. DBJ*Solutions Ltd.")]
 [assembly: AssemblyProduct("DBJ*T#")]
-[assembly: AssemblyCopyright("(c) 2005-2006 by DBJ*Solutions Ltd.")]
+[assembly: AssemblyCopyright("(c) 2005-2006-2018 by DBJ.Systems")]
 [assembly: AssemblyTrademark("DBJ*T# is an worldwide trademark.")]
 [assembly: AssemblyCulture("")]		
 

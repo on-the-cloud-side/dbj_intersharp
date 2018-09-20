@@ -539,7 +539,7 @@ namespace dbj.fm
 		/// <summary>
 		/// returns event log name
 		/// </summary>
-		public static string DBJ_EVLOG_LOGNAME { get { return "DBJ_EVLOG"; }}
+		public static string DBJ_EVLOG_LOGNAME { get { return "DBJ.Systems Event Log"; }}
 
 		/// <summary>
 		/// Name of the XML node, used for dbj configuration files.

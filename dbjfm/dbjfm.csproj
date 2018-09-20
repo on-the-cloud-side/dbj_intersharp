@@ -39,7 +39,8 @@
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>dbjfm.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
@@ -97,16 +98,16 @@
     <Compile Include="configuration\configurator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="data\ado.cs">
+    <Compile Include="configuration\data\ado.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="data\adonet.cs">
+    <Compile Include="configuration\data\adonet.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="data\common.cs">
+    <Compile Include="configuration\data\common.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="data\server2000.cs">
+    <Compile Include="configuration\data\server2000.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="dbjfm.cs">
