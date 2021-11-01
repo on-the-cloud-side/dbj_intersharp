@@ -14,8 +14,10 @@
 @rem
 @SET FrameworkDir=%WINDIR%\Microsoft.NET\Framework
 @REM @SET FrameworkVersion=v1.1.4322
-@SET FrameworkVersion=v2.0.50727
-@set REGISTRATOR=%FrameworkDir%\%FrameworkVersion%\regsvcs.exe
+@@rem SET FrameworkVersion=v2.0.50727
+@rem v4.0.30319
+@SET "FrameworkVersion=v2.0.50727"
+@set "REGISTRATOR=%FrameworkDir%\%FrameworkVersion%\regsvcs.exe"
 
 %REGISTRATOR% %1
 

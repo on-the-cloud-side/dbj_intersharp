@@ -15,8 +15,8 @@
 //
 #endregion
 
-[assembly:System.Security.Permissions.SecurityPermissionAttribute(System.Security.Permissions.SecurityAction.RequestMinimum, UnmanagedCode=true)]
-[assembly:System.Security.Permissions.PermissionSetAttribute(System.Security.Permissions.SecurityAction.RequestMinimum, Name = "FullTrust")]
+//[assembly:System.Security.Permissions.SecurityPermissionAttribute(System.Security.Permissions.SecurityAction.RequestMinimum, UnmanagedCode=true)]
+//[assembly:System.Security.Permissions.PermissionSetAttribute(System.Security.Permissions.SecurityAction.RequestMinimum, Name = "FullTrust")]
 
 namespace dbjept
 {
@@ -236,11 +236,23 @@ namespace dbjept
 				iunknownPTR     = dbj.fm.util.make_new_com_object(this.tested_component_progid) ;
 				this.tested_component_ = (tzxPlugInInterop.IXMLService)iunknownPTR;
 #else
+				// obtain System.__ComObject by the PROGID
 				Type tzx_xml_svc_type = Type.GetTypeFromProgID( the_prog_id ) ;
+
+				if (tzx_xml_svc_type == null)
+				{
+					throw new ApplicationException("Could not get the type from the progid: " + the_prog_id);
+				}
+				// Activator delivers
+				// iunknownPTR = {System.Runtime.Remoting.Proxies.__TransparentProxy}
 				iunknownPTR = Activator.CreateInstance( tzx_xml_svc_type ) ;
-#endif				 
+#endif
+				// finally this is the same type
+				// this.tested_component_ = {System.Runtime.Remoting.Proxies.__TransparentProxy}
+				// but with the interface we need available
 				this.tested_component_ = (dbj.integration.IPoint)iunknownPTR ;
-				//status(describer.describe((MarshalByRefObject)iunknownPTR)) ;			
+				//status(describer.describe((MarshalByRefObject)iunknownPTR)) ;	
+				// calling into dbjfm typinfo service		
 				writeln( typeinfo.describe( this.tested_component_  ,
 						dbj.fm.Itypeinfo.WHAT.ALL 
 					| dbj.fm.Itypeinfo.WHAT.ATTRIBUTES )
