@@ -99,7 +99,6 @@
     </Compile>
     <None Include="dbj.key" />
     <None Include="dbjinterpoint.idl" />
-    <None Include="register.cmd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

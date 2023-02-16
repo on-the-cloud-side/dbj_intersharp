@@ -4,7 +4,8 @@
 cpp_quote("//-------------------------------------------------------")
 cpp_quote("//-------------------------------------------------------")
 cpp_quote("//-------------------------------------------------------")
-cpp_quote("// (c) 2006 by DBJSolutions Ltd.")
+cpp_quote("// (c) 2004, 2006 by DBJSolutions Ltd.")
+cpp_quote("// (c) 2020, 2022 by DBJSystems   Ltd.")
 cpp_quote("//-------------------------------------------------------")
 cpp_quote("//-------------------------------------------------------")
 cpp_quote("//-------------------------------------------------------")
@@ -12,7 +13,7 @@ cpp_quote("//-------------------------------------------------------")
 [
   uuid(ED07766C-88E5-3B40-A349-B2F1027AD633),
   version(5.0),
-  helpstring("DBJ's Integration Interfaces, (c) 2006 by DBJSolutions Ltd."),
+  helpstring("DBJ's Integration Interfaces, (c) by DBJSolutions Ltd., DBJSystems Ltd."),
 ]
 library dbjinterpoint
 {

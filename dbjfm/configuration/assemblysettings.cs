@@ -1,4 +1,4 @@
-#region Copyright © 2003-2005 DBJ*Solutions Ltd. All Rights Reserved
+#region Copyright ï¿½ 2003-2005 DBJ*Solutions Ltd. All Rights Reserved
 // This file and its contents are protected by United States and 
 // International copyright laws. Unauthorized reproduction and/or 
 // distribution of all or any portion of the code contained herein 
